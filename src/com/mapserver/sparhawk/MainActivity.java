@@ -19,19 +19,18 @@ public class MainActivity extends Activity {
         // 位置情報を取得
         LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         location = new LocationController(manager);
+        location.setActivity(this);
     }
     
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("sparhawk", "resume");
         location.update();
     }
     
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("sparhawk", "pause");
         location.remove();
     }
 
@@ -44,7 +43,7 @@ public class MainActivity extends Activity {
     
     public void onCurrentLocation(View view) {
         TextView text = (TextView) findViewById(R.id.textView1);
+        // TODO 以下の処理は本番では使わないのであとで消す。
         text.setText("kita-");
     }
-
 }
